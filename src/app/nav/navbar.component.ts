@@ -15,7 +15,7 @@ import { AuthService } from "../user/auth.service";
 export class NavBarComponent {
 
     searchTerm: string = ""
-    foundSessions!: ISession[]
+    foundSessions!: ISession[] | any[]
 
     constructor(
         public auth: AuthService,
@@ -26,7 +26,6 @@ export class NavBarComponent {
         this.eventService.searchSessions(searchTerm)
             .subscribe((sessions: ISession[]) => {
                 this.foundSessions = sessions
-                console.log(this.foundSessions)
             })
     }
 
