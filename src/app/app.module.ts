@@ -24,7 +24,8 @@ import {
   SessionListComponent,
   DurationPipe,
   UpVoteComponent,
-  VoterService
+  VoterService,
+  LocationValidator
 } from './events/index'
 
 import { EventsAppComponent } from './events-app.component';
@@ -57,6 +58,7 @@ let jQuery = (window as any)['$']
     SimpleModalComponent,
     UpVoteComponent,
     ModalTriggerDirective,
+    LocationValidator,
     DurationPipe
   ],
   providers: [
