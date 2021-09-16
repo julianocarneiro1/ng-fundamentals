@@ -15,7 +15,7 @@ export class SessionListComponent implements OnChanges {
     visibleSessions: ISession[] | undefined = []
 
     constructor(
-        private auth: AuthService,
+        public auth: AuthService,
         private voterService: VoterService) {
     }
 
