@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable, EventEmitter } from "@angular/core";
 import { Observable, of } from "rxjs";
 import { catchError } from "rxjs/operators";
@@ -13,22 +13,17 @@ export class EventService {
     getEvents(): Observable<IEvent[]> {
         return this.http.get<IEvent[]>('/api/events')
             .pipe(catchError(this.handleError<IEvent[]>('getEvents', [])))
-    }    
+    }
 
     getEvent(id: number): Observable<IEvent> {
         return this.http.get<IEvent>('/api/events/' + id)
-            .pipe(catchError(this.handleError<IEvent>('getEvents')))
+            .pipe(catchError(this.handleError<IEvent>('getEvent')))
     }
 
     saveEvent(event: any) {
-       event.id = 999 
-       event.session = []
-       EVENTS.push(event)
-    }
-
-    updateEvent(event: any) {
-        let index = EVENTS.findIndex(x => x.id = event.id)
-        EVENTS[index] = event
+        let options = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) }
+        return this.http.post<IEvent>('/api/events', event, options)
+            .pipe(catchError(this.handleError<IEvent>('saveEvent')))
     }
 
     searchSessions(searchTerm: string) {
@@ -52,7 +47,7 @@ export class EventService {
         return emitter
     }
 
-    private handleError<T> (operation = 'operation', result?: T) {
+    private handleError<T>(operation = 'operation', result?: T) {
         return (error: any): Observable<T> => {
             console.error(error)
             return of(result as T)
