@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { Error404Component } from './errors/404.component';
+import { HttpClientModule } from '@angular/common/http'
 
 import {
   JQ_TOKEN,
@@ -42,7 +43,8 @@ let jQuery = (window as any)['$']
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    HttpClientModule
   ],
   declarations: [
     EventsAppComponent,
