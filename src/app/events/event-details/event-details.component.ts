@@ -24,29 +24,26 @@ export class EventDetailsComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.route.params.forEach((params: Params) => {
-            let eventTest = this.eventService.getEvent(+params['id'])
-            if (eventTest != undefined) {
-                this.event = eventTest
-            }
+        this.route.data.forEach((data) => {
+            this.event = data['event']
             this.addMode = false
         })
     }
 
-addSession() {
-    this.addMode = true
-}
+    addSession() {
+        this.addMode = true
+    }
 
-saveNewSession(session: ISession) {
-    const nextId = Math.max.apply(null, this.event?.sessions.map(s => s.id))
-    session.id = nextId + 1
-    this.event.sessions.push(session)
-    this.eventService.updateEvent(this.event)
-    this.addMode = false
-}
+    saveNewSession(session: ISession) {
+        const nextId = Math.max.apply(null, this.event?.sessions.map(s => s.id))
+        session.id = nextId + 1
+        this.event.sessions.push(session)
+        this.eventService.updateEvent(this.event)
+        this.addMode = false
+    }
 
-cancelAddSession() {
-    this.addMode = false
-}
+    cancelAddSession() {
+        this.addMode = false
+    }
 
 }

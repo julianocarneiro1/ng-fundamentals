@@ -15,7 +15,6 @@ import {
 
 import {
   EventDetailsComponent,
-  EventRouteActivator,
   CreateEventComponent,
   EventThumbnailComponent,
   EventsListComponent,
@@ -26,7 +25,8 @@ import {
   DurationPipe,
   UpVoteComponent,
   VoterService,
-  LocationValidator
+  LocationValidator,
+  EventResolver
 } from './events/index'
 
 import { EventsAppComponent } from './events-app.component';
@@ -67,7 +67,7 @@ let jQuery = (window as any)['$']
     EventService,
     { provide: TOASTR_TOKEN, useValue: toastr },
     { provide: JQ_TOKEN, useValue: jQuery },
-    EventRouteActivator,
+    EventResolver,
     EventListResolver,
     VoterService,
     AuthService,
