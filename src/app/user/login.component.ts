@@ -10,9 +10,10 @@ import { AuthService } from "./auth.service";
 })
 export class LoginComponent {
 
-    userName: any;
-    password: any;
-    mouseoverLogin: any;
+    userName: any
+    password: any
+    mouseoverLogin: any
+    loginInvalid = false
 
     constructor(
         private authService: AuthService,
@@ -21,7 +22,13 @@ export class LoginComponent {
 
     login(formValues: any) {
         this.authService.loginUser(formValues.userName, formValues.password)
-        this.router.navigate(['events'])
+            .subscribe(resp => {
+                if (!resp) {
+                    this.loginInvalid = true
+                } else {
+                    this.router.navigate(['events'])
+                }
+            })
     }
 
     cancel() {
