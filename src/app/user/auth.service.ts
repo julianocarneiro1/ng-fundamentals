@@ -15,7 +15,7 @@ export class AuthService {
     loginUser(userName: string, password: string) {
 
         let loginInfo = { username: userName, password: password }
-        let options = { headers: new HttpHeaders({'Content-Type': 'application/json'})}
+        let options = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) }
 
         return this.http.post('/api/login', loginInfo, options)
             .pipe(tap(data => {
@@ -28,6 +28,16 @@ export class AuthService {
 
     isAuthenticated() {
         return !!this.currentUser;
+    }
+
+    checkAuthenticationStatus() {
+        this.http.get('/api/currentIdentity')
+            .pipe(tap(data => {
+                if (data instanceof Object) {
+                    this.currentUser = <IUser>data
+                }
+            }))
+            .subscribe()
     }
 
     updateCurrentUser(firstName: string, lastName: string) {
