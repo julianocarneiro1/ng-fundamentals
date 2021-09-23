@@ -1,7 +1,8 @@
-import { DebugElement } from "@angular/core"
+import { Component, DebugElement, Input, NO_ERRORS_SCHEMA } from "@angular/core"
 import { ComponentFixture, TestBed } from "@angular/core/testing"
+import { CollapsibleWellComponent } from "src/app/common"
 import { AuthService } from "src/app/user/auth.service"
-import { SessionListComponent, VoterService } from "."
+import { SessionListComponent, UpVoteComponent, VoterService } from "."
 import { DurationPipe } from ".."
 
 describe('SessionListComponent', () => {
@@ -19,11 +20,14 @@ describe('SessionListComponent', () => {
         TestBed.configureTestingModule({
             declarations: [
                 SessionListComponent,
-                DurationPipe
+                DurationPipe,
             ],
             providers: [
                 { provide: AuthService, useValue: mockAuthService },
                 { provide: VoterService, useValue: mockVoterService }
+            ],
+            schemas: [
+                NO_ERRORS_SCHEMA //ignore template errors and children components from a template
             ]
         })
         fixture = TestBed.createComponent(SessionListComponent)
