@@ -35,8 +35,8 @@ import { appRoutes } from './routes';
 import { AuthService } from './user/auth.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-let toastr: Toastr = (window as any)['toastr']
-let jQuery = (window as any)['$']
+const toastr: Toastr = (window as any)['toastr']
+const jQuery = (window as any)['$']
 
 @NgModule({
   imports: [
