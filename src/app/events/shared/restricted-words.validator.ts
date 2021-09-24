@@ -1,6 +1,6 @@
 import { FormControl } from "@angular/forms"
 
-export function restrictedWords (words: string[]) {
+export function restrictedWords (words: string[]): any {
     return (control: FormControl): {[key: string]: any} | null => {
         if (!words) return null
 
